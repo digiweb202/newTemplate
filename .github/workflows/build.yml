@@ -22,8 +22,15 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Extract Version from Commit Message
+      id: extract_version
+      run: |
+        version=$(git log -1 --pretty=%s | grep -oP 'version:\s*\K\S+')
+        echo "Version extracted from commit message: $version"
+        echo "::set-output name=version::$version"
+
     - name: Build and Push Docker Image
       run: |
-        version="v1"
-        docker build -t digiwebnjoygroup/newv1:$version .
+        version=${{ steps.extract_version.outputs.version }}
+        docker build --build-arg VERSION=$version -t digiwebnjoygroup/newv1:$version .
         docker push digiwebnjoygroup/newv1:$version
