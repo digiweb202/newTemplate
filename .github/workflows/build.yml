@@ -24,6 +24,5 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker buildx create --use
-        docker buildx build -t digiwebnjoygroup/newv1:latest .
+        docker build -t digiwebnjoygroup/newv1:latest .
         docker push digiwebnjoygroup/newv1:latest
