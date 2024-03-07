@@ -25,5 +25,5 @@ jobs:
     - name: Build and Push Docker Image
       run: |
         docker buildx create --use
-        docker buildx build --platform linux/amd64,linux/arm64 -t digiwebnjoygroup/newv1:latest -f Dockerfile .
-        docker push digiwebnjoygroup/newv1:latest
+        docker buildx build -t ${{ secrets.DOCKER_REGISTRY }}/my-simple-website:latest .
+        docker push ${{ secrets.DOCKER_REGISTRY }}/my-simple-website:latest
