@@ -25,5 +25,5 @@ jobs:
     - name: Build and Push Docker Image
       run: |
         docker buildx create --use
-        docker buildx build -t ${{ secrets.DOCKER_REGISTRY }}/my-simple-website:latest .
-        docker push ${{ secrets.DOCKER_REGISTRY }}/my-simple-website:latest
+        docker buildx build -t ${{ secrets.DOCKER_REGISTRY }}/newv1:latest .
+        docker push ${{ secrets.DOCKER_REGISTRY }}/newv1:latest
